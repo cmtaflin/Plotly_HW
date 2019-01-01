@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Flask Plotlyjs Example</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -22,7 +24,15 @@
       <div class="col-md-2">
         <div class="well">
           <h5>SELECT Sample:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <select id="selDataset" onchange="optionChanged(this.value)">
+            <option>940</option>
+            <option>941</option>
+            <!-- ADD in options wiht the following code
+          <option value= "Value1">Select1</option> 
+          Needs to be derived from metadata[1]
+          List created outside of HTML-->
+         
+          </select>
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
@@ -45,12 +55,13 @@
     </div>
   </div>
 
-  <!-- <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> -->
+  <script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="{{ url_for('static', filename='js/bonus.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-
+  <script src="../static/js/app.js"></script>
 </body>
 
 </html>
+<!-- test -->

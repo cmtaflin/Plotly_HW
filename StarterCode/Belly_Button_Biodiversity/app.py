@@ -21,10 +21,12 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/bellybutton.sqlite"
 db = SQLAlchemy(app)
 
+
+
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
-Base.prepare(db.engine, reflect=True)
+Base.prepare(db.engine,reflect = True)
 
 # Save references to each table
 Samples_Metadata = Base.classes.sample_metadata
@@ -44,7 +46,7 @@ def names():
     # Use Pandas to perform the sql query
     stmt = db.session.query(Samples).statement
     df = pd.read_sql_query(stmt, db.session.bind)
-
+    
     # Return a list of the column names (sample names)
     return jsonify(list(df.columns)[2:])
 
@@ -75,7 +77,7 @@ def sample_metadata(sample):
         sample_metadata["BBTYPE"] = result[5]
         sample_metadata["WFREQ"] = result[6]
 
-    print(sample_metadata)
+    
     return jsonify(sample_metadata)
 
 
