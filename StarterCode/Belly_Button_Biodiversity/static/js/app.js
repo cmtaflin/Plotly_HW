@@ -33,19 +33,38 @@ function buildCharts(sample) {
   // @TODO: Use `d3.json` to fetch the sample data for the plots
   d3.json(`/samples/${sample}`).then(function(response){
     console.log(response);
+
     // @TODO: Build a Bubble Chart using the sample data
-    // var bubbleTrace = 
+    var bubbleTrace = {
+      x: response.out_ids,
+      y: response.sample_values,
+      mode: "markers",
+      text: response.otu_labels,
+      marker: {
+        color: response.out_ids,
+        size: response.sample_values,
+        colorscale: "Earth"
+      }
+
+    };  
+    var bubbleData= [bubbleTrace];
+    var bubbleLayout = {
+      showlegend:false
+    };
+
+    Plotly.newPlot("bubble",bubbleData,bubbleLayout);
+    
     // @TODO: Build a Pie Chart
     var pieTrace = {
       values: response.sample_values.slice(0,10),
-      labels: response.otu_labels.slice(0,10),
-      hovertext:response.otu_ids.slice(0,10),
+      labels: response.otu_ids.slice(0,10),
+      hovertext:response.otu_labels.slice(0,10),
       type: "pie"
     };
 
     var pieData = [pieTrace];
     var pieLayout= {
-      showlegend:true
+      showlegend:false
     };
     
     Plotly.newPlot("pie",pieData,pieLayout);
